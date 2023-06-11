@@ -6,9 +6,12 @@ import connectDB from "../config/db.js";
 const port = process.env.PORT;
 import userRoutes from './routes/userRoutes.js'
 
-connectDB();
+await connectDB(); //Want to connect first
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/users', userRoutes);
 
