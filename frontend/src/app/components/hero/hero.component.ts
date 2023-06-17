@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss'],
   standalone: true,
-  imports: [ MatCardModule, MatGridListModule, MatButtonModule ]
+  imports: [ RouterModule, MatCardModule, MatGridListModule, MatButtonModule ]
 })
 export class HeroComponent {
 

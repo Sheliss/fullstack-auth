@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
-    <span class="hero-title" (click)="goToHero()" >Auth App</span>
+    <span class="hero-title" [routerLink]="['/']">Auth App</span>
     <span class="spacer"></span>
-    <button mat-button>
+    <button mat-button [routerLink]="['login']">
         <mat-icon fontIcon="login"></mat-icon>
         <span>Login</span>
     </button>
