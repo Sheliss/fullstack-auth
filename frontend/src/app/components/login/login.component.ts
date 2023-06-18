@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AccountService } from 'src/app/services/account.service';
+import { LoginData } from 'src/app/Interfaces';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -25,8 +27,32 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule ]
 })
 export class LoginComponent {
+
+  constructor(
+    private accountService: AccountService
+  ) {}
+
   loginForm = new FormGroup ({
-    loginName: new FormControl('', [Validators.required]),
+    loginEmail: new FormControl('', [Validators.required, Validators.email]),
     loginPassword: new FormControl('', [Validators.required])
   });
+
+  onSubmit() {
+    const email = this.loginForm.value.loginEmail;
+    const password = this.loginForm.value.loginPassword;
+
+    if( typeof(email) === 'string' && typeof(password) === 'string' ) {
+      const data: LoginData = {
+        email: email,
+        password: password
+      }
+
+      this.accountService.onLogin(data).subscribe((res: any) => {
+        console.log(res)
+      });
+    } else {
+      return console.error('Something wrong')
+    }
+
+  }
 }

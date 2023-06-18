@@ -8,14 +8,14 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content align="center">
-                <form [formGroup]="loginForm">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <mat-form-field class="form-input">
                         <mat-label>
-                            Name
+                            Email
                         </mat-label>
-                        <input matInput type="text" formControlName="loginName">
+                        <input matInput type="email" formControlName="loginEmail">
                         <mat-error>
-                            Name is required
+                            Email is required
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field class="form-input">
