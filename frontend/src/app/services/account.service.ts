@@ -14,7 +14,8 @@ export class AccountService {
   onLogin(data: LoginData) : Observable<any> {
     return this.http.post('http://localhost:5000/api/users/auth', data)
     .pipe(catchError(err => {
-      return throwError(() => new Error(err))
+      console.log(err)
+      return throwError(() => new Error(err.status))
     }));
   }
 

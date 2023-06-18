@@ -10,3 +10,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 .mdc-card {
     flex: 1 1 auto
 }
+
+.notification-error {
+    --mdc-snackbar-container-color: #f44336;
+    --mdc-snackbar-supporting-text-color: #fff;
+    --mat-mdc-snack-bar-button-color: #fff;
+}

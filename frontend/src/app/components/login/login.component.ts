@@ -10,6 +10,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarModule,
+  MatSnackBarVerticalPosition
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -24,12 +30,14 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule, 
     MatFormFieldModule, 
     MatInputModule,
-    MatButtonModule ]
+    MatButtonModule,
+    MatSnackBarModule ]
 })
 export class LoginComponent {
 
   constructor(
-    private accountService: AccountService
+    private accountService: AccountService,
+    private _snackBar: MatSnackBar
   ) {}
 
   loginForm = new FormGroup ({
@@ -47,8 +55,20 @@ export class LoginComponent {
         password: password
       }
 
-      this.accountService.onLogin(data).subscribe((res: any) => {
-        console.log(res)
+      this.accountService.onLogin(data).subscribe({
+        next: (res: any) => {
+          console.log(res)
+        }, error: (err) => {
+          if(err.toString() === 'Error: 401') {
+            this._snackBar.open('Invalid Email or Password', 'OK', {
+              duration: 3000,
+              panelClass: 'notification-error'
+            })
+            this.loginForm.patchValue({
+              loginPassword: ''
+            })
+          }
+        }
       });
     } else {
       return console.error('Something wrong')
