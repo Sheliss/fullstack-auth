@@ -10,9 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss'],
   standalone: true,
   imports: [ FormsModule, 
     ReactiveFormsModule, 
@@ -24,9 +24,11 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatButtonModule ]
 })
-export class LoginComponent {
-  loginForm = new FormGroup ({
-    loginName: new FormControl('', [Validators.required]),
-    loginPassword: new FormControl('', [Validators.required])
+export class SignupComponent {
+  signupForm = new FormGroup ({
+    signupName: new FormControl('', [Validators.required]),
+    signupEmail: new FormControl('', [Validators.required, Validators.email]),
+    signupPassword: new FormControl('', [Validators.required]),
+    signupRepeatPassword: new FormControl('', [Validators.required])
   });
 }
