@@ -2,17 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
-import { LoginData } from 'src/app/Interfaces';
+import { LoginData, LoginResData } from 'src/app/Interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class AccountService {
+
 
   constructor(private http: HttpClient) { }
 
   onLogin(data: LoginData) : Observable<any> {
-    return this.http.post('http://localhost:5000/api/users/auth', data)
+    return this.http.post('http://localhost:5000/api/users/auth', data, {
+      withCredentials: true
+    })
     .pipe(catchError(err => {
       console.log(err)
       return throwError(() => new Error(err.status))

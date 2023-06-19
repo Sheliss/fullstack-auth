@@ -14,7 +14,12 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ maxAge: 84600 }));
+app.use(cors({ 
+    maxAge: 84600,
+    origin: 'http://localhost:4200',
+    credentials: true
+ }));
+
 
 app.use(cookieParser());
 

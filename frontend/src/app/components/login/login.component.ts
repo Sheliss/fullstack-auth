@@ -3,7 +3,7 @@ import { FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup } 
 import { NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
-import { LoginData } from 'src/app/Interfaces';
+import { LoginData, LoginResData } from 'src/app/Interfaces';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -56,7 +56,8 @@ export class LoginComponent {
       }
 
       this.accountService.onLogin(data).subscribe({
-        next: (res: any) => {
+        next: (res: LoginResData) => {
+          console.log(typeof(res.email))
           console.log(res)
         }, error: (err) => {
           if(err.toString() === 'Error: 401') {
