@@ -15,7 +15,6 @@ const authUser = asyncHandler(async (req, res) => {
       generateToken(res, user._id);
         
       res.json({
-        _id: user._id,
         name: user.name,
         email: user.email,
       });
@@ -48,7 +47,6 @@ const registerUser = asyncHandler(async (req, res) => {
     if (user) {
         generateToken(res, user._id);
         res.status(201).json({
-            _id: user._id,
             name: user.name,
             email: user.email
         });
@@ -79,7 +77,6 @@ const logoutUser = asyncHandler(async (req, res) => {
 
 const getUserProfile = asyncHandler(async (req, res) => {
     const user = {
-        _id: req.user._id,
         name: req.user.name,
         email: req.user.email
     }

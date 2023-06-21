@@ -4,7 +4,11 @@ export interface LoginData {
 }
 
 export interface LoginResData {
-    'email': string,
-    'password': string,
-    '_id': string
+    'name': string,
+    'password': string
+}
+
+export interface currentUser {
+    'isLogged': boolean,
+    'name': string
 }

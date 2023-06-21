@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
-import { LoginData, LoginResData } from 'src/app/Interfaces';
+import { LoginData, LoginResData, currentUser } from 'src/app/Interfaces';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -37,7 +37,8 @@ export class LoginComponent {
 
   constructor(
     private accountService: AccountService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   loginForm = new FormGroup ({
@@ -57,8 +58,22 @@ export class LoginComponent {
 
       this.accountService.onLogin(data).subscribe({
         next: (res: LoginResData) => {
-          console.log(typeof(res.email))
-          console.log(res)
+
+          if(typeof res.name === 'string') {
+            const name: string = res.name;
+            const currentUser: currentUser = {
+              isLogged: true,
+              name: name
+            }
+
+            localStorage.setItem('user', JSON.stringify(currentUser));
+          } else {
+            console.error('Wrong response type');
+            return;
+          }
+
+
+          this.router.navigate(['/profile'])
         }, error: (err) => {
           if(err.toString() === 'Error: 401') {
             this._snackBar.open('Invalid Email or Password', 'OK', {

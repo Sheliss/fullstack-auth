@@ -10,18 +10,24 @@ import { LoginData, LoginResData } from 'src/app/Interfaces';
 
 
 export class AccountService {
-
+  private apiUri = 'http://localhost:5000/api/';
 
   constructor(private http: HttpClient) { }
 
   onLogin(data: LoginData) : Observable<any> {
-    return this.http.post('http://localhost:5000/api/users/auth', data, {
+    return this.http.post( this.apiUri + 'users/auth', data, {
       withCredentials: true
     })
     .pipe(catchError(err => {
       console.log(err)
       return throwError(() => new Error(err.status))
     }));
+  }
+
+  onLogout() : Observable<any> {
+    return this.http.post(this.apiUri + 'users/logout', '', {
+      withCredentials: true
+    });
   }
 
 }
