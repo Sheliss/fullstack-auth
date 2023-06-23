@@ -3,9 +3,9 @@ export interface LoginData {
     'password': string
 }
 
-export interface LoginResData {
+export interface ProfileData {
     'name': string,
-    'password': string
+    'email': string
 }
 
 export interface currentUser {

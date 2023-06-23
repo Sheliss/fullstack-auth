@@ -4,7 +4,7 @@ import { NgIf } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { UserService } from 'src/app/services/user.service';
-import { LoginData, LoginResData, currentUser } from 'src/app/Interfaces';
+import { LoginData } from 'src/app/Interfaces';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -13,9 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarModule,
-  MatSnackBarVerticalPosition
+  MatSnackBarModule
 } from '@angular/material/snack-bar';
 
 @Component({
@@ -59,8 +57,7 @@ export class LoginComponent {
       }
 
       this.accountService.onLogin(data).subscribe({
-        next: (res: LoginResData) => {
-
+        next: (res: any) => {
           if(typeof res.name === 'string') {
             const name: string = res.name;
             this.userService.setUser(true, name);

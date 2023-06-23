@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
-import { LoginData, LoginResData } from 'src/app/Interfaces';
+import { LoginData } from 'src/app/Interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,6 @@ export class AccountService {
       withCredentials: true
     })
     .pipe(catchError(err => {
-      console.log(err)
       return throwError(() => new Error(err.status))
     }));
   }
@@ -28,6 +27,15 @@ export class AccountService {
     return this.http.post(this.apiUri + 'users/logout', '', {
       withCredentials: true
     });
+  }
+
+  getProfile() : Observable<any> {
+    return this.http.get(this.apiUri + 'users/profile', {
+      withCredentials: true
+    })
+    .pipe(catchError(err => {
+      return throwError(() => new Error(err))
+    }))
   }
 
 }
