@@ -3,6 +3,7 @@ import { FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup } 
 import { NgIf } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
+import { UserService } from 'src/app/services/user.service';
 import { LoginData, LoginResData, currentUser } from 'src/app/Interfaces';
 
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -37,6 +38,7 @@ export class LoginComponent {
 
   constructor(
     private accountService: AccountService,
+    private userService: UserService,
     private _snackBar: MatSnackBar,
     private router: Router
   ) {}
@@ -61,18 +63,11 @@ export class LoginComponent {
 
           if(typeof res.name === 'string') {
             const name: string = res.name;
-            const currentUser: currentUser = {
-              isLogged: true,
-              name: name
-            }
-
-            localStorage.setItem('user', JSON.stringify(currentUser));
+            this.userService.setUser(true, name);
           } else {
             console.error('Wrong response type');
             return;
           }
-
-
           this.router.navigate(['/profile'])
         }, error: (err) => {
           if(err.toString() === 'Error: 401') {
