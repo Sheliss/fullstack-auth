@@ -6,39 +6,30 @@
             </mat-card-title>
         </mat-card-header>
         <mat-card-content align="center">
-            <form>
+            <form [formGroup]="updateForm">
                 <mat-form-field class="card-input">
                     <mat-label>
                         Name
                     </mat-label>
-                    <input matInput type="text" formControlName="signupName">
-                    <mat-error>
-                        Name is required
-                    </mat-error>
+                    <input matInput type="text" formControlName="changeName" [(ngModel)]="profile.name">
                 </mat-form-field>
                 <mat-form-field class="card-input">
                     <mat-label>
                         E-mail
                     </mat-label>
-                    <input matInput type="email" formControlName="signupEmail">
-                    <mat-error>
-                        Email is required
-                    </mat-error>
+                    <input matInput type="email" formControlName="changeEmail" [(ngModel)]="profile.email">
                 </mat-form-field>
                 <mat-form-field class="card-input">
                     <mat-label>
                         New Password
                     </mat-label>
-                    <input matInput type="password" formControlName="signupPassword">
-                    <mat-error>
-                        Password is required
-                    </mat-error>
+                    <input matInput type="password" formControlName="changeNewPassword">
                 </mat-form-field>
                 <mat-form-field class="card-input">
                     <mat-label>
                         Current password
                     </mat-label>
-                    <input matInput type="password" formControlName="signupRepeatPassword">
+                    <input matInput type="password" formControlName="changeOldPassword">
                     <mat-error>
                         You need to enter your current password
                     </mat-error>
