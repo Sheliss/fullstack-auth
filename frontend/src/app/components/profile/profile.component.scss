@@ -1,3 +1,15 @@
+.card-container {
+    width: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner {
+    width: 100px;
+}
+
 .card-title {
     justify-content: center;
 }
@@ -8,4 +20,17 @@
 
 .card-button {
     width: 100%;
+}
+
+.card-controls {
+    flex-direction: column;
+}
+
+.card-button-spacer {
+    height: 16px;
+}
+
+.card-error-title {
+    font-size: 25px;
+    line-height: 45px;
 }

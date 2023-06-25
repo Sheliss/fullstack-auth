@@ -1,0 +1,58 @@
+<div class="card-container">
+    <mat-card appearance="outlined">
+        <mat-card-header class="card-title">
+            <mat-card-title class="mat-h1">
+                Update profile
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content align="center">
+            <form>
+                <mat-form-field class="card-input">
+                    <mat-label>
+                        Name
+                    </mat-label>
+                    <input matInput type="text" formControlName="signupName">
+                    <mat-error>
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="card-input">
+                    <mat-label>
+                        E-mail
+                    </mat-label>
+                    <input matInput type="email" formControlName="signupEmail">
+                    <mat-error>
+                        Email is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="card-input">
+                    <mat-label>
+                        New Password
+                    </mat-label>
+                    <input matInput type="password" formControlName="signupPassword">
+                    <mat-error>
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="card-input">
+                    <mat-label>
+                        Current password
+                    </mat-label>
+                    <input matInput type="password" formControlName="signupRepeatPassword">
+                    <mat-error>
+                        You need to enter your current password
+                    </mat-error>
+                </mat-form-field>
+                <mat-card-actions class="card-controls">
+                    <button class="card-button" mat-flat-button color="primary" type="submit">
+                        Update
+                    </button>
+                    <span class="card-button-spacer"></span>
+                    <button class="card-button" mat-flat-button color="primary" type="reset" [routerLink]="['/profile']">
+                        Back to profile
+                    </button>
+                </mat-card-actions>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

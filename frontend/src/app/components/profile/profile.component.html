@@ -1,30 +1,56 @@
-<div class="card-container">
-    <mat-card appearance="outlined">
-        <mat-card-header class="card-title">
-            <mat-card-title class="mat-h1">
-                Profile
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card-content align="center">
-            <div class="card-item">
+<ng-container *ngIf="status === 'loading'">
+    <div class="card-container spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-container>
+<ng-container *ngIf="status === 'error'">
+    <div class="card-container">
+        <mat-card appearance="outlined">
+            <mat-card-header class="card-title card-error-title">
+                😠
+            </mat-card-header>
+            <mat-card-content align="center">
                 <div class="card-item__name">
-                    Name:
+                    {{error}}
                 </div>
-                <div class="div">
-                    {{profile.name}}
+            </mat-card-content>
+            <mat-card-actions class="card-controls">
+                <button class="card-button" mat-flat-button color="primary" [routerLink]="['/login']">Back to login</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</ng-container>
+<ng-container *ngIf="status === 'profile'">
+    <div class="card-container">
+        <mat-card appearance="outlined">
+            <mat-card-header class="card-title">
+                <mat-card-title class="mat-h1">
+                    Profile
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content align="center">
+                <div class="card-item">
+                    <div class="card-item__name">
+                        Name:
+                    </div>
+                    <div>
+                        {{profile.name}}
+                    </div>
                 </div>
-            </div>
-            <div class="card-item">
-                <div class="card-item__name">
-                    Email:
+                <div class="card-item">
+                    <div class="card-item__name">
+                        Email:
+                    </div>
+                    <div>
+                        {{profile.email}}
+                    </div>
                 </div>
-                <div class="div">
-                    {{profile.email}}
-                </div>
-            </div>
-        </mat-card-content>
-        <mat-card-actions>
-            <button class="card-button" mat-flat-button color="primary" (click)="onLogout()">Logout</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
+            </mat-card-content>
+            <mat-card-actions class="card-controls">
+                <button class="card-button" mat-flat-button color="primary" [routerLink]="['/profile/update']">Update profile</button>
+                <span class="card-button-spacer"></span>
+                <button class="card-button" mat-flat-button color="primary" (click)="onLogout()">Logout</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</ng-container>
