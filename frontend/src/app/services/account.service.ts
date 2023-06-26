@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
-import { LoginData, UpdateUser } from 'src/app/Interfaces';
+import { LoginData, UpdateUser, NewUserData } from 'src/app/Interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +40,15 @@ export class AccountService {
 
   updateProfile(data: UpdateUser) : Observable<any> {
     return this.http.put(this.apiUri + 'users/profile', data, {
+      withCredentials: true
+    })
+    .pipe(catchError(err => {
+      return throwError(() => new Error(err.error.message))
+    }))
+  }
+
+  newUser(data: NewUserData) : Observable<any> {
+    return this.http.post(this.apiUri + 'users', data, {
       withCredentials: true
     })
     .pipe(catchError(err => {

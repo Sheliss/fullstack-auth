@@ -18,3 +18,9 @@ export interface UpdateUser {
     'email'?: string,
     'password'?: string
 }
+
+export interface NewUserData {
+    'name': string,
+    'email': string,
+    'password': string
+}
