@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { ProfileData } from 'src/app/Interfaces';
+import { ProfileData, UpdateUser } from 'src/app/Interfaces';
 import { AccountService } from 'src/app/services/account.service';
 
 import { MatCardModule } from '@angular/material/card';
@@ -35,7 +35,8 @@ export class ProfileUpdateComponent implements OnInit {
   }
 
   constructor (
-    private accountService: AccountService
+    private accountService: AccountService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -49,13 +50,41 @@ export class ProfileUpdateComponent implements OnInit {
     })
   }
 
-
-
   updateForm = new FormGroup({
-    changeEmail: new FormControl(this.profile.email, [Validators.email]),
+    changeEmail: new FormControl('', [Validators.email]),
     changeName: new FormControl(''),
-    changeNewPassword: new FormControl(''),
-    changeOldPassword: new FormControl('', [Validators.required])
-
+    changeNewPassword: new FormControl('')
   })
+
+  onSubmit() {
+    let updateData: UpdateUser = {};
+
+
+    if( this.updateForm.value.changeEmail !== (null && '') ) {
+      updateData.email = this.updateForm.value.changeEmail;
+    }
+
+    if( this.updateForm.value.changeName !== (null && '') ) {
+      updateData.name = this.updateForm.value.changeName;
+    }
+
+    if( this.updateForm.value.changeNewPassword !== (null && '') ) {
+      updateData.password = this.updateForm.value.changeNewPassword;
+    }
+    
+    if( Object.keys(updateData).length > 0 ) {
+      this.accountService.updateProfile(updateData).subscribe({
+        next: () => {
+          this.router.navigate(['/profile']);
+        }, error: (err) => {
+          console.error(err);
+        }
+      })
+    } else {
+      return console.error('something wrong')
+    }
+  }
+
+
+
 }

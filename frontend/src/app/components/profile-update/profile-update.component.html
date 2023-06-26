@@ -6,33 +6,24 @@
             </mat-card-title>
         </mat-card-header>
         <mat-card-content align="center">
-            <form [formGroup]="updateForm">
+            <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
                 <mat-form-field class="card-input">
                     <mat-label>
-                        Name
+                        New Name
                     </mat-label>
-                    <input matInput type="text" formControlName="changeName" [(ngModel)]="profile.name">
+                    <input matInput type="text" formControlName="changeName">
                 </mat-form-field>
                 <mat-form-field class="card-input">
                     <mat-label>
-                        E-mail
+                        New E-mail
                     </mat-label>
-                    <input matInput type="email" formControlName="changeEmail" [(ngModel)]="profile.email">
+                    <input matInput type="email" formControlName="changeEmail">
                 </mat-form-field>
                 <mat-form-field class="card-input">
                     <mat-label>
                         New Password
                     </mat-label>
                     <input matInput type="password" formControlName="changeNewPassword">
-                </mat-form-field>
-                <mat-form-field class="card-input">
-                    <mat-label>
-                        Current password
-                    </mat-label>
-                    <input matInput type="password" formControlName="changeOldPassword">
-                    <mat-error>
-                        You need to enter your current password
-                    </mat-error>
                 </mat-form-field>
                 <mat-card-actions class="card-controls">
                     <button class="card-button" mat-flat-button color="primary" type="submit">

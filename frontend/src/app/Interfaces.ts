@@ -12,3 +12,9 @@ export interface currentUser {
     'isLogged': boolean,
     'name': string
 }
+
+export interface UpdateUser {
+    'name'?: string,
+    'email'?: string,
+    'password'?: string
+}
