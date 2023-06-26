@@ -37,6 +37,7 @@ export class UserService {
       name: name
     }
 
+    this.user.next(user);
     const jsonUser = JSON.stringify(user);
     localStorage.setItem('user', jsonUser);
   }

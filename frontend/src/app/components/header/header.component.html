@@ -1,12 +1,32 @@
 <mat-toolbar color="primary">
     <span class="hero-title" [routerLink]="['/']">Auth App</span>
     <span class="spacer"></span>
-    <button mat-button [routerLink]="['login']">
-        <mat-icon fontIcon="login"></mat-icon>
-        <span>Login</span>
-    </button>
-    <button mat-button [routerLink]="['signup']">
-        <mat-icon fontIcon="login"></mat-icon>
-        <span>Sigh up</span>
-    </button>
+    <ng-container *ngIf="!currentUser.isLogged">
+        <button mat-button [routerLink]="['login']">
+            <mat-icon fontIcon="login"></mat-icon>
+            <span>Login</span>
+        </button>
+        <button mat-button [routerLink]="['signup']">
+            <mat-icon fontIcon="login"></mat-icon>
+            <span>Sigh up</span>
+        </button>
+    </ng-container>
+    <ng-container *ngIf="currentUser.isLogged">
+        <div class="header-user">
+            {{currentUser.name}}
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="['profile']">
+                <mat-icon>person</mat-icon>
+                <span>Profile</span>
+            </button>
+            <button mat-menu-item (click)="onLogout()">
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+    </ng-container>
 </mat-toolbar>
