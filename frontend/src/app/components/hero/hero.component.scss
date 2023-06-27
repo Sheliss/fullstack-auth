@@ -1,11 +1,25 @@
-.hero-buttons-container {
-    justify-content: center;
+
+.card-container {
+    width: 400px;
 }
 
-.hero-button {
+.card-button {
     width: 90px;
 }
 
-.button-spacer {
+.card-actions {
+    flex-direction: column;
+}
+
+.card-button-spacer {
     width: 10px;
+}
+
+
+.card-title {
+    justify-content: center;
+}
+
+.card-buttons-container {
+    justify-content: center;
 }

@@ -1,6 +1,4 @@
-<mat-grid-list cols="12" color="primary">
-    <mat-grid-tile colspan="4"></mat-grid-tile>
-    <mat-grid-tile colspan="4" rowspan="7">
+<div class="card-container">
         <mat-card appearance="outlined">
             <mat-card-header>
                 <mat-card-title align="center">
@@ -13,20 +11,19 @@
             </mat-card-header>
             <mat-card-content>
                 <ng-container *ngIf="!currentUser.isLogged">
-                    <mat-card-actions class="hero-buttons-container">
-                        <button mat-stroked-button class="hero-button" [routerLink]="['login']">Login</button>
-                        <span class="button-spacer"></span>
-                        <button mat-stroked-button class="hero-button" [routerLink]="['signup']">Sign up</button>
+                    <mat-card-actions class="card-buttons-container">
+                        <button mat-stroked-button class="card-button" [routerLink]="['login']">Login</button>
+                        <span class="card-button-spacer"></span>
+                        <button mat-stroked-button class="card-button" [routerLink]="['signup']">Sign up</button>
                     </mat-card-actions>
                 </ng-container>
                 <ng-container *ngIf="currentUser.isLogged">
-                    <mat-card-actions class="hero-buttons-container">
-                        <button mat-stroked-button class="hero-button" [routerLink]="['profile']">Profile</button>
-                        <span class="button-spacer"></span>
-                        <button mat-stroked-button class="hero-button" (click)="onLogout()">Logout</button>
+                    <mat-card-actions class="card-buttons-container">
+                        <button mat-stroked-button class="card-button" [routerLink]="['profile']">Profile</button>
+                        <span class="card-button-spacer"></span>
+                        <button mat-stroked-button class="card-button" (click)="onLogout()">Logout</button>
                     </mat-card-actions>
                 </ng-container>
             </mat-card-content> 
         </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+</div>
