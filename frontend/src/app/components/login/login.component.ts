@@ -56,31 +56,39 @@ export class LoginComponent {
         password: password
       }
 
-      this.accountService.onLogin(data).subscribe({
-        next: (res: any) => {
-          if(typeof res.name === 'string') {
-            const name: string = res.name;
-            this.userService.setUser(true, name);
-          } else {
-            console.error('Wrong response type');
-            return;
-          }
-          this.router.navigate(['/profile'])
-        }, error: (err) => {
-          if(err.toString() === 'Error: 401') {
-            this._snackBar.open('Invalid Email or Password', 'OK', {
-              duration: 3000,
-              panelClass: 'notification-error'
-            })
-            this.loginForm.patchValue({
-              loginPassword: ''
-            })
-          }
-        }
-      });
+      this.loginUser(data);
     } else {
       return console.error('Something wrong')
     }
 
   }
+
+  loginUser(data: LoginData) {
+    this.accountService.onLogin(data).subscribe({
+      next: (res: any) => {
+        if(typeof res.name === 'string') {
+          const name: string = res.name;
+          this.userService.setUser(true, name);
+        } else {
+          console.error('Wrong response type');
+          return;
+        }
+        this.router.navigate(['/profile'])
+      }, error: (err) => {
+        this.onErrorSnackBox(err.toString());
+      }
+    });
+  }
+
+  onErrorSnackBox(error: string) {
+    this._snackBar.open(error, 'OK', {
+      duration: 3000,
+      panelClass: 'notification-error'
+    })
+    this.loginForm.patchValue({
+      loginPassword: ''
+    })
+  }
+
+  
 }

@@ -1,13 +1,13 @@
 <div class="card-container">
     <mat-card appearance="outlined">
-        <mat-card-header class="form-title">
+        <mat-card-header class="card-title">
             <mat-card-title class="mat-h1">
                 Sigh up
             </mat-card-title>
         </mat-card-header>
         <mat-card-content align="center">
             <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-                <mat-form-field class="form-input">
+                <mat-form-field class="card-input">
                     <mat-label>
                         Name
                     </mat-label>
@@ -16,7 +16,7 @@
                         Name is required
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field class="form-input">
+                <mat-form-field class="card-input">
                     <mat-label>
                         E-mail
                     </mat-label>
@@ -25,7 +25,7 @@
                         Email is required
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field class="form-input">
+                <mat-form-field class="card-input">
                     <mat-label>
                         Password
                     </mat-label>
@@ -34,7 +34,7 @@
                         Password is required
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field class="form-input">
+                <mat-form-field class="card-input">
                     <mat-label>
                         Repeat password
                     </mat-label>
@@ -43,12 +43,12 @@
                         You need to repeat your password
                     </mat-error>
                 </mat-form-field>
-                <mat-card-actions class="form-actions">
-                    <button class="form-button" mat-flat-button color="primary" type="submit" [disabled]="!signupForm.valid">
+                <mat-card-actions class="card-actions">
+                    <button class="card-button" mat-flat-button color="primary" type="submit" [disabled]="!signupForm.valid">
                         Sign up
                     </button>
-                    <span class="form-button-spacer"></span>
-                    <button class="form-button" mat-flat-button color="primary" type="reset" [routerLink]="['/login']">
+                    <span class="card-button-spacer"></span>
+                    <button class="card-button" mat-flat-button color="primary" type="reset" [routerLink]="['/login']">
                         I already have an account
                     </button>
                 </mat-card-actions>
