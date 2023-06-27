@@ -10,7 +10,7 @@ import { LoginData, UpdateUser, NewUserData } from 'src/app/Interfaces';
 
 
 export class AccountService {
-  private apiUri = 'http://localhost:5000/api/';
+  private apiUri = '/api/';
 
   constructor(private http: HttpClient) { }
 
